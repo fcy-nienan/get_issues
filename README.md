@@ -21,9 +21,14 @@ Or install it yourself as:
     $ gem install get_issues
 
 ## Usage
-
-TODO: Write usage instructions here
-
+```ruby
+prefix_url = 'https://repo2.scm.atyun.com.cn/api/v4/projects'
+private_token = 'xxx'
+group_name = 'xxx'
+project_name = 'xxx'
+milestone_title = 'xxx'
+issues_json = GetIssues.start(prefix_url,private_token,group_name,project_name,milestone_title)
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
