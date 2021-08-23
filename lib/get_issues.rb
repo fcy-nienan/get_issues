@@ -15,7 +15,7 @@ module GetIssues
     mile_stone_json = milestones_json.filter { |t| t["title"] == mile_stone_title }&.first
     mile_stone_id = mile_stone_json["id"]
 
-    issues_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/#{project_id}/milestones/#{mile_stone_id}/issues"`
+    issues_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/#{project_id}/milestones/#{mile_stone_id}/issues?per_page=10000"`
     issues_json = JSON.parse(issues_string)
     issues_json
   end
