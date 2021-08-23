@@ -22,7 +22,7 @@ Or install it yourself as:
 
 ## Usage
 ```ruby
-prefix_url = 'https://repo2.scm.atyun.com.cn/api/v4/projects'
+prefix_url = 'https://xxxxxx/api/v4/projects'
 private_token = 'xxx'
 group_name = 'xxx'
 project_name = 'xxx'
