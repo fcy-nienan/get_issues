@@ -3,7 +3,6 @@ require "spreadsheet_architect"
 
 module GetIssues
   class Error < StandardError; end
-  https://repo.scm.atyun.com.cn/api/v4/projects?sort=asc&&order_by=name&&simple=true&&per_page=1000
 
   def self.start_group(prefix_url,private_token,group_name,mile_stone_title)
     groups_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/groups?per_page=1000"`
