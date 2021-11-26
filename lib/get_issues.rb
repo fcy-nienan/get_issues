@@ -3,10 +3,10 @@ require "spreadsheet_architect"
 
 module GetIssues
   class Error < StandardError; end
-
+  https://repo.scm.atyun.com.cn/api/v4/projects?sort=asc&&order_by=name&&simple=true&&per_page=1000
 
   def self.start_group(prefix_url,private_token,group_name,mile_stone_title)
-    groups_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/groups"`
+    groups_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/groups?per_page=1000"`
     groups_json = JSON.parse(groups_string)
     group_json = groups_json.filter { |t| t["name"] == group_name }&.first || {}
     group_id = group_json["id"]
@@ -14,7 +14,7 @@ module GetIssues
       p "找不到group"
     end
 
-    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/groups/#{group_id}/milestones"`
+    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/groups/#{group_id}/milestones?per_page=1000"`
     milestones_json = JSON.parse(milestones_string)
     mile_stone_json = milestones_json.filter { |t| t["title"] == mile_stone_title }&.first
     mile_stone_id = mile_stone_json["id"]
@@ -28,14 +28,14 @@ module GetIssues
   end
 
   def self.start_project(prefix_url, private_token, project_name, mile_stone_title)
-    projects_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects"`
+    projects_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects?sort=asc&&order_by=name&&simple=true&&per_page=1000"`
     projects_json = JSON.parse(projects_string)
     project_json = projects_json.filter { |t| t["name"] == project_name }&.first || {}
     project_id = project_json["id"]
     if project_id.nil?
       p "找不到project"
     end
-    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects/#{project_id}/milestones"`
+    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects/#{project_id}/milestones&&per_page=1000"`
     milestones_json = JSON.parse(milestones_string)
     mile_stone_json = milestones_json.filter { |t| t["title"] == mile_stone_title }&.first || {}
     mile_stone_id = mile_stone_json["id"]
