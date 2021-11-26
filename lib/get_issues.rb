@@ -34,7 +34,7 @@ module GetIssues
     if project_id.nil?
       p "找不到project"
     end
-    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects/#{project_id}/milestones&&per_page=1000"`
+    milestones_string = `curl --header "PRIVATE-TOKEN: #{private_token}" "#{prefix_url}/projects/#{project_id}/milestones?per_page=1000"`
     milestones_json = JSON.parse(milestones_string)
     mile_stone_json = milestones_json.filter { |t| t["title"] == mile_stone_title }&.first || {}
     mile_stone_id = mile_stone_json["id"]
